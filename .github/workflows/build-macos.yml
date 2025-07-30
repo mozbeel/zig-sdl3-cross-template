@@ -27,7 +27,9 @@ jobs:
           path: |
             .zig-cache
             zig-out
-          key: zig-cache
+          key: zig-cache-${{ runner.os }}-${{ hashFiles('**/*.zig') }}-${{ hashFiles('build.zig') }}
+          restore-keys: |
+            zig-cache-${{ runner.os }}-
 
       - name: Upload build output
         uses: actions/upload-artifact@v4
