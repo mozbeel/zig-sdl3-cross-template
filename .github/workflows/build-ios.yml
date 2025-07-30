@@ -27,6 +27,7 @@ jobs:
           path: |
             .zig-cache
             zig-out
+          key: zig-cache
 
       - name: Upload build output
         uses: actions/upload-artifact@v4
