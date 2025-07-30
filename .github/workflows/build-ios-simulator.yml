@@ -21,6 +21,13 @@ jobs:
       - name: Build project
         run: zig build -Dtarget=x86_64-ios-simulator --sysroot "$(xcrun --sdk iphonesimulator --show-sdk-path)"
 
+      - name: Cache Zig output
+        uses: actions/cache@v4
+        with:
+        path: |
+          .zig-cache
+          zig-out
+
       - name: Upload build output
         uses: actions/upload-artifact@v4
         with:
