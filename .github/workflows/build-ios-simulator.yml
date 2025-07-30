@@ -27,6 +27,7 @@ jobs:
           path: |
             .zig-cache
             zig-out
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload build output
         uses: actions/upload-artifact@v4
