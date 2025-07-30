@@ -17,9 +17,6 @@ jobs:
       
       - name: Install dependencies
         run: brew install zig
-        
-      - name: Build project
-        run: zig build -Dtarget=x86_64-ios-simulator --sysroot "$(xcrun --sdk iphonesimulator --show-sdk-path)"
 
       - name: Cache Zig output
         uses: actions/cache@v4
@@ -30,6 +27,9 @@ jobs:
           key: zig-cache-${{ runner.os }}-${{ hashFiles('**/*.zig') }}-${{ hashFiles('build.zig') }}
           restore-keys: |
             zig-cache-${{ runner.os }}-
+        
+      - name: Build project
+        run: zig build -Dtarget=x86_64-ios-simulator --sysroot "$(xcrun --sdk iphonesimulator --show-sdk-path)"
 
       - name: Upload build output
         uses: actions/upload-artifact@v4
